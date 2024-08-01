@@ -11,7 +11,7 @@ const port = process.env.PORT || 3001;
 
 const routerApi = require("./routes");
 
-app.use(cors());
+app.use(cors({ origin: "https://celebria-app-frontend.vercel.app" }));
 app.use(express.json());
 
 app.get("/", (req, res) => {

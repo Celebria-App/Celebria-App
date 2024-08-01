@@ -13,6 +13,7 @@ import Image from "next/image";
 import AddCommentForm from "@/components/AddCommentForm";
 import AddPostModal from "@/components/AddPostModal";
 import Sidebar from "@/components/UI/Sidebar";
+import Loader from "@/components/UI/Loader";
 const API_URL = process.env.API_BASE_URL;
 const sendDonationSchema = Yup.object().shape({
   title: Yup.string().required("El titulo es requerido."),
@@ -50,8 +51,11 @@ const EventDetail = () => {
   const router = useRouter();
   const { id } = router.query;
   const [event, setEvent] = useState(null);
+  const [loadingEvent, setLoadingEvent] = setState(false);
   const [invitations, setInvitations] = useState([]);
+  const [loadingInvitations, setLoadingInvitations] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [loadingPosts, setLoadingPosts] = useState(false);
   const [disableInviteBtn, setDisableInviteBtn] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -73,12 +77,15 @@ const EventDetail = () => {
 
   const getEventPosts = async (id) => {
     try {
+      setLoadingPosts(true);
       const res = await axios.get(`${API_URL}/post/all?id=${id}`);
       if (res) {
         setPosts(res.data.allPosts);
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoadingPosts(false);
     }
   };
 
@@ -153,22 +160,28 @@ const EventDetail = () => {
   };
 
   const getEventData = async (id) => {
+    setLoadingEvent(true);
     try {
       const res = await axios.get(`${API_URL}/event/${id}`);
       return res.data.eventById;
     } catch (error) {
       console.error("Error fetching event data:", error);
       return null;
+    } finally {
+      setLoadingEvent(false);
     }
   };
 
   const getInvitationsList = async (id) => {
     try {
+      setLoadingInvitations(true);
       const res = await axios.get(`${API_URL}/invitation/event/${id}`);
       return res.data.invitations;
     } catch (error) {
       console.error("Error fetching invitations list:", error);
       return [];
+    } finally {
+      setLoadingInvitations(true);
     }
   };
 
@@ -226,7 +239,9 @@ const EventDetail = () => {
       case "invitations":
         return (
           <div className="overflow-x-auto w-full h-full text-black">
-            {invitations?.length > 0 ? (
+            {loadingInvitations ? (
+              <Loader />
+            ) : invitations?.length > 0 ? (
               <table className="table">
                 <thead>
                   <tr>
@@ -386,7 +401,9 @@ const EventDetail = () => {
               </button>
             </div>
             <section className="w-full h-full  min-h-[600px] flex justify-center items-center">
-              {posts.length > 0 ? (
+              {loadingPosts ? (
+                <Loader />
+              ) : posts.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                   {posts?.map((post) => (
                     <section
@@ -498,16 +515,23 @@ const EventDetail = () => {
       </div>
       <div className="w-full h-full min-h-screen py-8 px-12 md:py-28  md:pl-16 md:pr-40 bg-white flex flex-col items-start justify-start gap-4">
         <section className="w-full h-full flex items-center justify-between gap-2">
-          <div className="flex flex-col gap-2">
-            <h1 className="text-2xl md:text-5xl text-primary font-bold">
-              {event?.title}
-            </h1>
-            <p>{event?.description}</p>
-            <p className="text-sm">
-              Fecha del evento: {formatDate(event?.date)}
-            </p>
-          </div>
-
+          {loadingEvent ? (
+            <div class="flex w-52 flex-col gap-4">
+              <div class="skeleton h-32 w-full"></div>
+              <div class="skeleton h-4 w-28"></div>
+              <div class="skeleton h-4 w-full"></div>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2">
+              <h1 className="text-2xl md:text-5xl text-primary font-bold">
+                {event?.title}
+              </h1>
+              <p>{event?.description}</p>
+              <p className="text-sm">
+                Fecha del evento: {formatDate(event?.date)}
+              </p>
+            </div>
+          )}
           <button
             className={
               disableInviteBtn

@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import NewEventBackground from "../../../../public/new-event.webp";
-import LoadingCircle from "../../../../public/loading-circle.svg";
+import Loader from "@/components/UI/Loader";
 import formatDate from "@/utils/formatDate";
 import { jwtDecode } from "jwt-decode";
 const API_URL = process.env.API_BASE_URL;
@@ -115,15 +115,7 @@ const Events = () => {
     <div className="flex flex-col sm:flex-row  justify-between items-center w-full bg-white">
       <Sidebar user={user} updateUser={updateUser} />
       {isLoadingEvents ? (
-        <div className="bg-white flex justify-center items-center h-screen w-full">
-          <Image
-            src={LoadingCircle}
-            alt="Loading"
-            width={50}
-            height={50}
-            priority
-          />
-        </div>
+        <Loader />
       ) : (!events?.createdEvents && !events?.invitedEvents) ||
         (events?.createdEvents?.length === 0 &&
           events?.invitedEvents.length === 0) ? (

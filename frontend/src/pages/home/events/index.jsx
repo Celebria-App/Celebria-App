@@ -8,7 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 import NewEventBackground from "../../../../public/new-event.webp";
 import formatDate from "@/utils/formatDate";
 import { jwtDecode } from "jwt-decode";
-import loadingCircel from "../../../../public/images/loading-circle.svg";
 const API_URL = process.env.API_BASE_URL;
 
 const fetchUser = async (userId) => {
@@ -158,7 +157,7 @@ const Events = () => {
       ) : isLoadingEvents ? (
         <div className="bg-white flex justify-center items-center h-screen w-full">
           <Image
-            src={loadingCircel}
+            src="./images/loading-circle.svg"
             alt="Loading"
             width={50}
             height={50}

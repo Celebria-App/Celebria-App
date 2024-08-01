@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import LoadingCircle from "../../../public/loader-circle.svg";
+import LoadingCircle from "../../../public/loading-circle.svg";
 
 const Loader = () => {
   return (

@@ -516,10 +516,16 @@ const EventDetail = () => {
       <div className="w-full h-full min-h-screen py-8 px-12 md:py-28  md:pl-16 md:pr-40 bg-white flex flex-col items-start justify-start gap-4">
         <section className="w-full  h-full flex items-center justify-between gap-2">
           {loadingEvent ? (
-            <div class="flex w-52 flex-col gap-4">
-              <div class="skeleton h-20 w-full"></div>
-              <div class="skeleton h-4 w-28"></div>
-              <div class="skeleton h-4 w-full"></div>
+            <div className="flex w-52 flex-col gap-4">
+              <div className="bg-skeleton animate-pulse h-20 w-full">
+                <div className="w-full h-full bg-primary rounded"></div>
+              </div>
+              <div className="bg-skeleton animate-pulse h-4 w-28">
+                <div className="w-full h-full bg-primary rounded"></div>
+              </div>
+              <div className="bg-skeleton animate-pulse h-4 w-full">
+                <div className="w-full h-full bg-primary rounded"></div>
+              </div>
             </div>
           ) : (
             <div className="flex flex-col gap-2">

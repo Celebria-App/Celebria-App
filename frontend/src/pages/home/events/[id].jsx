@@ -181,7 +181,7 @@ const EventDetail = () => {
       console.error("Error fetching invitations list:", error);
       return [];
     } finally {
-      setLoadingInvitations(true);
+      setLoadingInvitations(false);
     }
   };
 
@@ -514,10 +514,10 @@ const EventDetail = () => {
         </button>
       </div>
       <div className="w-full h-full min-h-screen py-8 px-12 md:py-28  md:pl-16 md:pr-40 bg-white flex flex-col items-start justify-start gap-4">
-        <section className="w-full h-full flex items-center justify-between gap-2">
+        <section className="w-full  h-full flex items-center justify-between gap-2">
           {loadingEvent ? (
             <div class="flex w-52 flex-col gap-4">
-              <div class="skeleton h-32 w-full"></div>
+              <div class="skeleton h-20 w-full"></div>
               <div class="skeleton h-4 w-28"></div>
               <div class="skeleton h-4 w-full"></div>
             </div>

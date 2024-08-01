@@ -113,9 +113,19 @@ const Events = () => {
   return (
     <div className="flex flex-col sm:flex-row  justify-between items-center w-full bg-white">
       <Sidebar user={user} updateUser={updateUser} />
-      {(!events?.createdEvents && !events?.invitedEvents) ||
-      (events?.createdEvents?.length === 0 &&
-        events?.invitedEvents.length === 0) ? (
+      {isLoadingEvents ? (
+        <div className="bg-white flex justify-center items-center h-screen w-full">
+          <Image
+            src="./images/loading-circle.svg"
+            alt="Loading"
+            width={50}
+            height={50}
+            priority
+          />
+        </div>
+      ) : (!events?.createdEvents && !events?.invitedEvents) ||
+        (events?.createdEvents?.length === 0 &&
+          events?.invitedEvents.length === 0) ? (
         <section className="w-full h-screen flex flex-col justify-center items-center">
           <div className="w-full h-full flex flex-col justify-center items-center px-2 md:px-0">
             <svg
@@ -154,16 +164,6 @@ const Events = () => {
             </button>
           </div>
         </section>
-      ) : isLoadingEvents ? (
-        <div className="bg-white flex justify-center items-center h-screen w-full">
-          <Image
-            src="./images/loading-circle.svg"
-            alt="Loading"
-            width={50}
-            height={50}
-            priority
-          />
-        </div>
       ) : (
         <section className="w-full h-screen flex flex-col items-center justify-center  md:px-28">
           <div className="w-full px-8 pt-4 ">

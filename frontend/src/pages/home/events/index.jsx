@@ -1,4 +1,4 @@
-import Guardian from "@/components/auth/guardian";
+import withGuardian from "@/components/auth/guardian";
 import Sidebar from "@/components/UI/Sidebar";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
@@ -287,4 +287,4 @@ const Events = () => {
   );
 };
 
-export default Guardian(Events);
+export default withGuardian(Events);

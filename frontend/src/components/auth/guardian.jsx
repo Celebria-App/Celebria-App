@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { checkTokenExpiration } from "./auth";
 import Swal from "sweetalert2";
 
-const Guardian = (WrappedComponent) => {
-  return (props) => {
+const withGuardian = (WrappedComponent) => {
+  const Guardian = (props) => {
     const router = useRouter();
 
     useEffect(() => {
@@ -28,6 +28,12 @@ const Guardian = (WrappedComponent) => {
 
     return <WrappedComponent {...props} />;
   };
+
+  Guardian.displayName = `WithGuardian(${
+    WrappedComponent.displayName || WrappedComponent.name || "Component"
+  })`;
+
+  return Guardian;
 };
 
-export default Guardian;
+export default withGuardian;

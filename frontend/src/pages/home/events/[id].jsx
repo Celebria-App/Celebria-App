@@ -1,3 +1,4 @@
+import withGuardian from "@/components/auth/guardian";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -572,4 +573,4 @@ const EventDetail = () => {
   );
 };
 
-export default EventDetail;
+export default withGuardian(EventDetail);

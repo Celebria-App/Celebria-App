@@ -1,4 +1,4 @@
-import Guardian from "@/components/auth/guardian";
+import withGuardian from "@/components/auth/guardian";
 import { jwtDecode } from "jwt-decode";
 import NewEventBackground from "../../../public/new-event.webp";
 import YourEventsBackground from "../../../public/your-events.webp";
@@ -121,4 +121,4 @@ const Home = () => {
   );
 };
 
-export default Guardian(Home);
+export default withGuardian(Home);

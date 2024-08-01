@@ -2,24 +2,19 @@ import Image from "next/image";
 import BackgroundImage from "../../public/party.jpg";
 import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
-import Modal from "@/components/Modal";
 import { useRouter } from "next/router";
-import { jwtDecode } from "jwt-decode";
 
 const EventRequest = () => {
   const [isModalVisible, setModalVisible] = useState(true);
-  const [tokenData, setTokenData] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const { token } = router.query;
-  const decoded = jwtDecode(token);
 
   useEffect(() => {
     if (token) {
       setIsOpen(true);
-      setTokenData(decoded);
     }
-  }, []);
+  }, [token]);
 
   const handleDecline = () => {
     setModalVisible(false);

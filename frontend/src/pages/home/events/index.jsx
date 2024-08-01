@@ -116,7 +116,7 @@ const Events = () => {
       {isLoadingEvents ? (
         <div className="bg-white flex justify-center items-center h-screen w-full">
           <Image
-            src="./images/loading-circle.svg"
+            src="./loading-circle"
             alt="Loading"
             width={50}
             height={50}

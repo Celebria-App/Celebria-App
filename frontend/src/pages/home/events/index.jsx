@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import NewEventBackground from "../../../../public/new-event.webp";
+import LoadingCircle from "../../../../public/loading-circle.svg";
 import formatDate from "@/utils/formatDate";
 import { jwtDecode } from "jwt-decode";
 const API_URL = process.env.API_BASE_URL;
@@ -116,7 +117,7 @@ const Events = () => {
       {isLoadingEvents ? (
         <div className="bg-white flex justify-center items-center h-screen w-full">
           <Image
-            src="./loading-circle"
+            src={LoadingCircle}
             alt="Loading"
             width={50}
             height={50}

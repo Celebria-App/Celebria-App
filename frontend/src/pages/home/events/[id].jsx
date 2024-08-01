@@ -51,7 +51,7 @@ const EventDetail = () => {
   const router = useRouter();
   const { id } = router.query;
   const [event, setEvent] = useState(null);
-  const [loadingEvent, setLoadingEvent] = setState(false);
+  const [loadingEvent, setLoadingEvent] = useState(false);
   const [invitations, setInvitations] = useState([]);
   const [loadingInvitations, setLoadingInvitations] = useState(false);
   const [posts, setPosts] = useState([]);

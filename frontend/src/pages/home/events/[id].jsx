@@ -51,11 +51,11 @@ const EventDetail = () => {
   const router = useRouter();
   const { id } = router.query;
   const [event, setEvent] = useState(null);
-  const [loadingEvent, setLoadingEvent] = useState(false);
+  const [loadingEvent, setLoadingEvent] = useState(true);
   const [invitations, setInvitations] = useState([]);
-  const [loadingInvitations, setLoadingInvitations] = useState(false);
+  const [loadingInvitations, setLoadingInvitations] = useState(true);
   const [posts, setPosts] = useState([]);
-  const [loadingPosts, setLoadingPosts] = useState(false);
+  const [loadingPosts, setLoadingPosts] = useState(true);
   const [disableInviteBtn, setDisableInviteBtn] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -77,7 +77,6 @@ const EventDetail = () => {
 
   const getEventPosts = async (id) => {
     try {
-      setLoadingPosts(true);
       const res = await axios.get(`${API_URL}/post/all?id=${id}`);
       if (res) {
         setPosts(res.data.allPosts);
@@ -160,7 +159,6 @@ const EventDetail = () => {
   };
 
   const getEventData = async (id) => {
-    setLoadingEvent(true);
     try {
       const res = await axios.get(`${API_URL}/event/${id}`);
       return res.data.eventById;
@@ -174,7 +172,6 @@ const EventDetail = () => {
 
   const getInvitationsList = async (id) => {
     try {
-      setLoadingInvitations(true);
       const res = await axios.get(`${API_URL}/invitation/event/${id}`);
       return res.data.invitations;
     } catch (error) {

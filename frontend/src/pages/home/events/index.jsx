@@ -29,7 +29,7 @@ const Events = () => {
   const [events, setEvents] = useState([]);
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
-  const [isLoadingEvents, setIsLoadingEvents] = useState(false);
+  const [isLoadingEvents, setIsLoadingEvents] = useState(true);
   const router = useRouter();
 
   const { data: user, refetch } = useQuery({
@@ -64,7 +64,6 @@ const Events = () => {
 
   const getEvents = async (userId, email) => {
     try {
-      setIsLoadingEvents(true);
       const { data } = await axios.get(
         `${API_URL}/event/all?id=${userId}&email=${email}`
       );

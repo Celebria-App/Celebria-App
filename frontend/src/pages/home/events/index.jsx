@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import NewEventBackground from "../../../../public/new-event.webp";
 import formatDate from "@/utils/formatDate";
 import { jwtDecode } from "jwt-decode";
+import loadingCircel from "../../../../public/images/loading-circle.svg";
 const API_URL = process.env.API_BASE_URL;
 
 const fetchUser = async (userId) => {
@@ -28,6 +29,7 @@ const Events = () => {
   const [events, setEvents] = useState([]);
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
+  const [isLoadingEvents, setIsLoadingEvents] = useState(false);
   const router = useRouter();
 
   const { data: user, refetch } = useQuery({
@@ -62,12 +64,15 @@ const Events = () => {
 
   const getEvents = async (userId, email) => {
     try {
+      setIsLoadingEvents(true);
       const { data } = await axios.get(
         `${API_URL}/event/all?id=${userId}&email=${email}`
       );
       setEvents(data.allEvents);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoadingEvents(false);
     }
   };
 
@@ -150,6 +155,16 @@ const Events = () => {
             </button>
           </div>
         </section>
+      ) : isLoadingEvents ? (
+        <div className="bg-white flex justify-center items-center h-screen w-full">
+          <Image
+            src={loadingCircel}
+            alt="Loading"
+            width={50}
+            height={50}
+            priority
+          />
+        </div>
       ) : (
         <section className="w-full h-screen flex flex-col items-center justify-center  md:px-28">
           <div className="w-full px-8 pt-4 ">

@@ -58,10 +58,10 @@ const NavBar = () => {
           } lg:flex lg:space-x-4 lg:items-center`}
         >
           <div className="flex flex-col items-center lg:flex-row lg:space-x-4 gap-4">
-            <NavLink text="LUGARES" />
+            {/* <NavLink text="LUGARES" />
             <NavLink text="PROVEEDORES" />
             <NavLink text="TU EVENTO" />
-            <NavLink text="INVITACIONES" />
+            <NavLink text="INVITACIONES" /> */}
             <Link href="/login" passHref>
               <Button text="ACCEDER" />
             </Link>

@@ -74,12 +74,19 @@ const Sidebar = ({ user, updateUser }) => {
           } lg:flex lg:space-x-4 lg:items-center`}
         >
           {isMenuOpen && (
-            <MenuOption
-              logo={ProfileLogo}
-              alt={"profile-logo"}
-              label={"Perfil"}
-              onClick={handleProfileClick}
-            />
+            <section className="flex justify-around items-center">
+              <MenuOption
+                logo={ProfileLogo}
+                alt={"profile-logo"}
+                label={"Perfil"}
+                onClick={handleProfileClick}
+              />
+              <button className=" btn text-white" onClick={openModal}>
+                <p className="text-xs">
+                  {user?.userPlan === "free" ? "FREE PLAN" : "PREMIUM PLAN"}
+                </p>
+              </button>
+            </section>
           )}
         </div>
 

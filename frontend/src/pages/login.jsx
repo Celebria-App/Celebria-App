@@ -43,7 +43,7 @@ const LoginPage = () => {
         </div>
         {/*esquina superior derecha */}
         <div className="flex items-center">
-          <p className="text-23 font-bold text-white mr-2">
+          <p className="text-23 font-bold text-sm hidden sm:block text-white mr-2 ml-2 ">
             ¿No te has registrado?
           </p>
           <Link href="/register" passHref>
@@ -55,7 +55,7 @@ const LoginPage = () => {
       </div>
 
       {/* Contenedor */}
-      <div className="max-w-sm w-full p-6 bg-white rounded-lg shadow-md mt-10">
+      <div className="max-w-sm w-72 sm:w-full p-4 sm:p-6 bg-white rounded-lg shadow-md mt-10 m-6">
         <h1 className="text-2xl text-black mb-6">Inicia sesión</h1>
         <Formik
           initialValues={{ email: "", password: "" }}

@@ -1,9 +1,10 @@
-import Hero from "../components/Hero";
+// import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
 import InvitationRequestModal from "@/components/InvitationRequestModal";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Footer from "../components/Footer";
+import { InvitationLandingPage } from "@/components/InvitationLandingPage";
 
 export default function Landing() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,8 +21,9 @@ export default function Landing() {
     <div>
       <NavBar className="z-10" />
       <InvitationRequestModal isOpen={isModalOpen} />
-      <Hero className="z-0" />
-      <Footer />
+      {/* <Hero className="z-0" /> */}
+      <InvitationLandingPage className="z-0"/>
+      {/* <Footer /> */}
     </div>
   );
 }

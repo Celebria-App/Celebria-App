@@ -96,7 +96,7 @@ const Home = () => {
               path={"/home/events"}
             />
           </section>
-          <section className="w-full md:h-full flex flex-col md:justify-center items-center">
+          {/* <section className="w-full md:h-full flex flex-col md:justify-center items-center">
             <div className="w-full">
               <span className="text-xs">Próximamente</span>
               <h2 className="text-3xl text-primary font-semibold opacity-25">
@@ -112,7 +112,7 @@ const Home = () => {
                 title={"Fiesta Halloween"}
               />
             </div>
-          </section>
+          </section> */}
         </section>
 
         <RegisterEventModal isOpen={isModalOpen} onClose={closeModal} />

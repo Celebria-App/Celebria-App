@@ -1,9 +1,38 @@
-import React from 'react';
-
+import Polaroid from '@/components/Polaroid';
+import React, {useState} from 'react';
+import Image from 'next/image';
 
 const Invitation = () => {
+  const [counterIndex, setCounterIndex] = useState(0)
+  const counterImg = [
+    'https://i.postimg.cc/gJy6vLvm/cc1.png',
+    'https://i.postimg.cc/FRXLdVkT/cc2.png',
+    'https://i.postimg.cc/mk8znxXn/cc3.png',
+    'https://i.postimg.cc/VvY04sRM/cc4.png'
+  ]
+  const handleIndex = ()=> {
+    if ((counterImg.length -1) > counterIndex) {
+      setCounterIndex(counterIndex + 1)
+    } else {
+      setCounterIndex(0);
+    }
+  }
+  const iconImg = [
+    '/iconsFreepik/boda.png',
+    '/iconsFreepik/arco-de-boda.png',
+    '/iconsFreepik/arco-de-la-boda.png',
+    '/iconsFreepik/baile (1).png',
+    '/iconsFreepik/baile.png',
+    '/iconsFreepik/banquete.png',
+    '/iconsFreepik/iglesia.png',
+    '/iconsFreepik/lugar-de-la-boda.png',
+    '/iconsFreepik/paloma.png',
+    '/iconsFreepik/salud.png',
+    '/iconsFreepik/vestido-de-novia.png',
+  ]
+
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
         <div className="fixed top-[26rem] md:top-[8rem] flex items-center z-50 right-0 ">
         <div className="bg-[#871c1c] rounded-l-full w-12 h-12 flex items-center justify-center opacity-80">
         <div className="bg-[#876c6c] rounded-full w-8 h-8 flex items-center justify-center">
@@ -47,39 +76,50 @@ const Invitation = () => {
             </div>
         </div>
       </div>
-      <section className="flex justify-center items-center h-screen">
-  <div className="bg-white shadow-lg p-4">
-    {/* Borde superior */}
-    <div className="h-4 bg-white"></div>
+      <section className="relative flex justify-center items-center h-screen cursor-pointer" onClick={handleIndex}>
+      <section className="relative z-10 rounded-full w-[14rem] h-[14rem] flex flex-col items-center justify-center text-red">
+  {/* Contenedor principal con el texto "Vista Conteo Fecha📆" */}
+  <div className="text-center mb-4">Vista Conteo Fecha📆</div>
 
-    <div className="flex justify-between items-center">
-      {/* Borde izquierdo */}
-      <div className="w-4 bg-white"></div>
-
-      {/* Imagen central */}
-      <img
-        className="shadow-lg"
-        src="https://st4.depositphotos.com/1017228/21207/i/450/depositphotos_212072892-stock-photo-portrait-happy-young-couple-hugging.jpg"
-        alt="Polaroid"
-      />
-
-      {/* Borde derecho */}
-      <div className="w-4 bg-white"></div>
+  {/* Contenedor para el conteo */}
+  <div className="flex space-x-2 text-center">
+    {/* 15 días */}
+    <div className="flex flex-col items-center">
+      <span className="text-2xl font-bold">15</span>
+      <span>días</span>
     </div>
 
-    {/* Borde inferior */}
-    <div className="h-12 bg-white"><h5 className='playfair text-2xl'>&</h5></div>
-  </div>
-      </section>
+    {/* Separador */}
+    <div className="w-[2px] h-full bg-[#871c1c]"></div>
 
-      <section className="relative flex justify-center items-center h-screen">
-        <div className="relative z-10 rounded-full w-[14rem] h-[14rem] flex items-center justify-center text-red">
-          Vista Conteo Fecha📆
-        </div>
-        
+    {/* 4 hs */}
+    <div className="flex flex-col items-center">
+      <span className="text-2xl font-bold">4</span>
+      <span>hs</span>
+    </div>
+
+    {/* Separador */}
+    <div className="w-[2px] h-full bg-[#871c1c]"></div>
+
+    {/* 1 min */}
+    <div className="flex flex-col items-center">
+      <span className="text-2xl font-bold">1</span>
+      <span>min</span>
+    </div>
+
+    {/* Separador */}
+    <div className="w-[2px] h-full bg-[#871c1c]"></div>
+
+    {/* 49 seg */}
+    <div className="flex flex-col items-center">
+      <span className="text-2xl font-bold">49</span>
+      <span>seg</span>
+    </div>
+  </div>
+</section>        
         <img
-          className="absolute z-0 w-[24rem] h-[24rem] object-cover"
-          src="https://www.fixdate.io/modelo-invitacion/115/img/img_circuloContador01.png"
+          className="absolute z-0 w-[30rem] h-[30rem] object-cover"
+          src={counterImg[counterIndex]}
           alt="Imagen de fondo"
         />
       </section>
@@ -88,8 +128,105 @@ const Invitation = () => {
         <img className="absolute top-[90%] left-[3%] w-[22rem] opacity-30 z-0" src="https://i.postimg.cc/ZqrRFg9k/pb3.png" alt="2" />
         <img className="absolute top-[70%] left-[70%] w-[18rem] opacity-60 z-0" src="https://i.postimg.cc/CKy58YxH/pb4.png" alt="3" />
       </section>
+
+      <section>
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 place-items-center">
+      {/* Primer div con las imágenes */}
+      <div className="relative bg-gray-200 p-6 w-[20rem] h-auto min-h-[22rem] rounded-lg">
+  {/* Imágenes en la esquina superior izquierda */}
+  <img
+    className="absolute z-[-3] w-[14rem] h-[14rem] transform -translate-x-1/2 -translate-y-1/2" // Imagen detrás del div
+    src="https://i.postimg.cc/HxKP4Qfv/cc7.png"
+    alt="Imagen detrás"
+    style={{ top: '0', left: '0', transformOrigin: 'top left' }} // Alineación en la esquina superior izquierda
+  />
+  <img
+    className="absolute z-20 w-[14rem] h-[14rem] transform -translate-x-1/2 -translate-y-1/2" // Imagen delante del div
+    src="https://i.postimg.cc/VLXHn044/cc11.png"
+    alt="Imagen delante"
+    style={{ top: '0', left: '0', transformOrigin: 'top left' }} // Alineación en la esquina superior izquierda
+  />
+  <div className="grid justify-center gap-2">
+        {iconImg.map((item, index) => (
+          <Image 
+            key={index}
+            className="w-auto"
+            src={item}
+            alt={'icon' + index}
+            width={20} // Ajusta el tamaño según sea necesario
+            height={20} // Ajusta el tamaño según sea necesario
+          />
+        ))}
+      </div>
+</div>
+
+
+      {/* Segundo div */}
+      <div className="bg-gray-200 p-6 w-[20rem] h-auto min-h-[22rem] rounded-lg">
+        <p><b>Estructura de una invitación:::::</b><br></br>
+-Intro<br></br>
+-Nombre de los casados<br></br>
+-Presentación (Nos casamos)<br></br>
+-Flecha para abajo o imagen de flores<br></br>
+-Herramienta para agendar fechas y ver conteo<br></br>
+-Infos sobre lugar, dress code, etc.<br></br>
+-Foto y texto editable<br></br>
+-Playlist, #Instagram, etc.<br></br>
+-Album y carrete de fotos<br></br>
+-Confirmar asistencia</p>
+      </div>
+    </section>
+      </section>
+
+
+
+
+
+      <section>
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 120"  // Altura ajustada para hacer las ondas más finas
+      className="w-full h-auto opacity-60"
+    >
+      {/* Primer lazo ondulado más fino */}
+      <path
+        fill="url(#grad1)"
+        fillOpacity="1"
+        d="M0,40L40,50C80,60,160,80,240,75C320,70,400,50,480,52C560,55,640,70,720,75C800,80,880,70,960,60C1040,50,1120,30,1200,25C1280,20,1360,40,1400,50L1440,60L1440,120L1400,120C1360,120,1280,120,1200,120C1120,120,1040,120,960,120C880,120,800,120,720,120C640,120,560,120,480,120C400,120,320,120,240,120C160,120,80,120,40,120L0,120Z"
+      ></path>
+       <path
+        fill="url(#grad2)"
+        fillOpacity="1"
+        d="M0,60L60,55C120,50,240,40,360,35C480,30,600,30,720,40C840,50,960,60,1080,65C1200,70,1320,70,1380,60L1440,50L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"
+      ></path>
+
+      {/* Definición de gradientes */}
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style={{ stopColor: "#f48fb1", stopOpacity: 1 }} />
+          <stop offset="100%" style={{ stopColor: "#ec407a", stopOpacity: 1 }} />
+        </linearGradient>
+        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style={{ stopColor: "#ec407a", stopOpacity: 1 }} />
+          <stop offset="100%" style={{ stopColor: "#880e4f", stopOpacity: 1 }} />
+        </linearGradient>
+      </defs>
+    </svg>
+      </section>
+      <Polaroid/>
     </div>
   );
 };
 
 export default Invitation;
+// <a href="https://www.flaticon.es/iconos-gratis/boda" title="boda iconos">Boda iconos creados por Liara Studio - Flaticon</a>
+{/* <a href="https://www.flaticon.es/iconos-gratis/boda" title="boda iconos">Boda iconos creados por Freepik - Flaticon</a> */}
+// <a href="https://www.flaticon.es/iconos-gratis/boda" title="boda iconos">Boda iconos creados por Freepik - Flaticon</a>
+// <a href="https://www.flaticon.es/iconos-gratis/boda" title="boda iconos">Boda iconos creados por Smashicons - Flaticon</a>
+// <a href="https://www.flaticon.es/iconos-gratis/boda" title="boda iconos">Boda iconos creados por Freepik - Flaticon</a>
+// <a href="https://www.flaticon.es/iconos-gratis/decoracion" title="decoración iconos">Decoración iconos creados por Eucalyp - Flaticon</a>
+// <a href="https://www.flaticon.es/iconos-gratis/decoracion" title="decoración iconos">Decoración iconos creados por Eucalyp - Flaticon</a>
+// <a href="https://www.flaticon.es/iconos-gratis/banquete" title="banquete iconos">Banquete iconos creados por Freepik - Flaticon</a>
+// <a href="https://www.flaticon.es/iconos-gratis/corazon" title="corazón iconos">Corazón iconos creados por Muhammad_Usman - Flaticon</a>
+// <a href="https://www.flaticon.es/iconos-gratis/decoracion" title="decoración iconos">Decoración iconos creados por Freepik - Flaticon</a>
+// <a href="https://www.flaticon.es/iconos-gratis/vestido" title="vestido iconos">Vestido iconos creados por Sir.Vector - Flaticon</a>

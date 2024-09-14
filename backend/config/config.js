@@ -10,6 +10,7 @@ const {
   PORT,
   MP_TOKEN,
   HOST,
+  CORS_ORIGIN_URL
 } = process.env;
 
 const config = {
@@ -22,6 +23,7 @@ const config = {
   env: NODE_ENV || "production",
   mpToken: MP_TOKEN,
   host: HOST,
+  cors: CORS_ORIGIN_URL || "https://celebria-app-frontend.vercel.app"
 };
 
 module.exports = { config };

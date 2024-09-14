@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
+const { config } = require("./config/config");
 
 dotenv.config();
 
@@ -11,7 +12,7 @@ const port = process.env.PORT || 3001;
 
 const routerApi = require("./routes");
 
-app.use(cors({ origin: "https://celebria-app-frontend.vercel.app" }));
+app.use(cors({ origin: config.cors }));
 app.use(express.json());
 
 app.get("/", (req, res) => {

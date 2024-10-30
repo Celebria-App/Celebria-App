@@ -6,22 +6,22 @@ import { useRouter } from "next/router";
 import Footer from "../components/Footer";
 
 export default function Landing() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter();
-  const { token } = router.query;
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const router = useRouter();
+	const { token } = router.query;
 
-  useEffect(() => {
-    if (token) {
-      openModal();
-    }
-  }, []);
-  const openModal = () => setIsModalOpen(true);
-  return (
-    <div>
-      <NavBar className="z-10" />
-      <InvitationRequestModal isOpen={isModalOpen} />
-      <Hero className="z-0" />
-      <Footer />
-    </div>
-  );
+	useEffect(() => {
+		if (token) {
+			openModal();
+		}
+	}, []);
+	const openModal = () => setIsModalOpen(true);
+	return (
+		<div>
+			<NavBar className="z-10" />
+			<InvitationRequestModal isOpen={isModalOpen} />
+			<Hero className="z-0" />
+			<Footer />
+		</div>
+	);
 }

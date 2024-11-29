@@ -4,24 +4,28 @@ import InvitationRequestModal from "@/components/InvitationRequestModal";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Footer from "../components/Footer";
+// import { InvitationLandingPage } from "@/components/InvitationLandingPage";
 
 export default function Landing() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const router = useRouter();
-	const { token } = router.query;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-	useEffect(() => {
-		if (token) {
-			openModal();
-		}
-	}, []);
-	const openModal = () => setIsModalOpen(true);
-	return (
-		<div>
-			<NavBar className="z-10" />
-			<InvitationRequestModal isOpen={isModalOpen} />
-			<Hero className="z-0" />
-			<Footer />
-		</div>
-	);
+  const router = useRouter();
+  const { token } = router.query;
+
+  useEffect(() => {
+    if (token) {
+      openModal();
+    }
+  }, []);
+  const openModal = () => setIsModalOpen(true);
+
+  return (
+    <div>
+      <NavBar className="z-10" />
+      <InvitationRequestModal isOpen={isModalOpen} />
+      <Hero className="z-0" />
+      {/* <InvitationLandingPage className="z-0"/> */}
+      <Footer />
+    </div>
+  );
 }
